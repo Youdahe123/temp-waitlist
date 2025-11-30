@@ -190,11 +190,13 @@
 
         <div id="waitlist-section" class="px-4">
             <button class="back-button" onclick="goBackFromWaitlist()" style="margin-bottom: 20px;">↑ Back</button>
-            <form onsubmit="submitWaitlistForm(event)" style="width: 100%; max-width: 500px;">
+            <form name="waitlist" method="POST" data-netlify="true" onsubmit="submitWaitlistForm(event)" style="width: 100%; max-width: 500px;">
+                <input type="hidden" name="form-name" value="waitlist">
                 <div style="margin-bottom: 40px;">
                     <label style="display: block; color: #666; font-size: 16px; font-weight: 400; margin-bottom: 10px;">Email</label>
                     <input
                         type="email"
+                        name="email"
                         class="input-field"
                         placeholder="Enter your email"
                         required
@@ -205,6 +207,7 @@
                     <label style="display: block; color: #666; font-size: 16px; font-weight: 400; margin-bottom: 10px;">Full Name</label>
                     <input
                         type="text"
+                        name="fullname"
                         class="input-field"
                         placeholder="Enter your full name"
                         required
@@ -215,6 +218,7 @@
                     <label style="display: block; color: #666; font-size: 16px; font-weight: 400; margin-bottom: 10px;">Position</label>
                     <input
                         type="text"
+                        name="position"
                         class="input-field"
                         placeholder="Student / Teacher / Parent"
                         required
@@ -250,9 +254,9 @@
         }
 
         function submitWaitlistForm(event) {
-            event.preventDefault();
-            alert('Thank you for joining the waitlist! We will be in touch soon.');
-            goBackFromWaitlist();
+            // Let the form submit naturally to Netlify
+            // The alert and redirect will happen after submission
+            return true;
         }
     </script>
 </body>
